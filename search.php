@@ -129,7 +129,10 @@ usort($cheapestRoutes, fn($a, $b) => array_sum(array_column($a, 'price')) <=> ar
     </style>
 </head>
 <body>
+        <button class="button" onclick="window.location.href='book.html'">← Go Back</button>
+
 <div class="container">
+
     <h2>Flights from <?= htmlspecialchars($source) ?> to <?= htmlspecialchars($destination) ?> on <?= htmlspecialchars($date) ?></h2>
     <div style="text-align:center;">
         <button class="button" onclick="showTab('shortest')">Shortest Path</button>
@@ -138,7 +141,7 @@ usort($cheapestRoutes, fn($a, $b) => array_sum(array_column($a, 'price')) <=> ar
         <button class="button" onclick="cancelBooking()">Cancel Booking</button>
     </div>
 
-    <!-- TABS: Shortest -->
+    <!--  Shortest Flights -->
     <div id="shortest" class="tab hidden">
         <h3>Shortest Route</h3>
         <?php if ($shortestPath): ?>
@@ -158,7 +161,7 @@ usort($cheapestRoutes, fn($a, $b) => array_sum(array_column($a, 'price')) <=> ar
         <?php else: ?><p>No route found.</p><?php endif; ?>
     </div>
 
-    <!-- TABS: Direct Flights -->
+    <!--  Direct Flights -->
     <div id="direct" class="tab hidden">
         <h3>Direct Flights</h3>
         <table><tr><th>Flight</th><th>From</th><th>To</th><th>Dep</th><th>Arr</th><th>Dur</th><th>Price</th><th>Action</th></tr>
@@ -184,7 +187,7 @@ usort($cheapestRoutes, fn($a, $b) => array_sum(array_column($a, 'price')) <=> ar
         </table>
     </div>
 
-    <!-- TABS: Cheapest -->
+    <!-- Cheapest -->
     <div id="cheapest" class="tab hidden">
         <h3>Cheapest Routes</h3>
         <?php if ($cheapestRoutes): ?>
@@ -217,7 +220,7 @@ function showTab(id) {
 
 function cancelBooking() {
     if (!confirm("Are you sure you want to cancel your booking?")) return;
-    fetch("cancel_booking.php", { method: "POST" })
+    fetch("cancel.php", { method: "POST" })
         .then(res => res.text())
         .then(msg => { alert(msg); location.reload(); })
         .catch(err => alert("Error cancelling: " + err));

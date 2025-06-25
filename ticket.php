@@ -6,7 +6,7 @@ if (!isset($_SESSION['uname'], $_SESSION['bookedTickets'])) {
 }
 $uname = $_SESSION['uname'];
 $bookedTickets = $_SESSION['bookedTickets'];
-unset($_SESSION['bookedTickets']); // Prevent reloading
+unset($_SESSION['bookedTickets']); 
 ?>
 
 <!DOCTYPE html>
@@ -95,10 +95,10 @@ unset($_SESSION['bookedTickets']); // Prevent reloading
     <?php endforeach; ?>
 
     <button class="btn" onclick="downloadTicket()">Download Ticket</button>
-    <button class="btn" onclick="window.location.href='search.php'">Back to Search</button>
+    <button class="btn" onclick="window.location.href='welcome.html'">Back to Home</button>
+
 </div>
 
-<!-- PDF Script -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
 function downloadTicket() {
